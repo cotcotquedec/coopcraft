@@ -1,23 +1,23 @@
 # Interface Contracts: Menu de Navigation à Gauche
 
-**Feature**: 001-left-menu  
+**Feature**: 001-menu  
 **Date**: 2025-11-17  
 **Phase**: 1 - Design & Contracts
 
 ## Overview
 
-Ce document définit les contrats d'interface pour le composant [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx) et ses sous-composants. Ces contrats garantissent la cohérence, la maintenabilité et l'interopérabilité du code.
+Ce document définit les contrats d'interface pour le composant [`Menu`](../../src/components/Menu/Menu.tsx) et ses sous-composants. Ces contrats garantissent la cohérence, la maintenabilité et l'interopérabilité du code.
 
 ## Component Contracts
 
-### LeftMenu Component
+### Menu Component
 
-**File**: [`src/components/LeftMenu/LeftMenu.tsx`](../../src/components/LeftMenu/LeftMenu.tsx)
+**File**: [`src/components/Menu/Menu.tsx`](../../src/components/Menu/Menu.tsx)
 
 #### Props Contract
 
 ```typescript
-interface LeftMenuProps {
+interface MenuProps {
   /** Configuration du menu */
   config: MenuConfig;
 }
@@ -36,7 +36,7 @@ interface LeftMenuProps {
 3. ✅ Déterminer automatiquement l'élément actif basé sur le pathname
 4. ✅ Gérer les événements clavier (Escape pour fermer)
 5. ✅ Gérer le clic extérieur pour fermer le menu (mobile)
-6. ✅ Rendre les éléments de menu via le composant [`MenuItem`](../../src/components/LeftMenu/MenuItem.tsx)
+6. ✅ Rendre les éléments de menu via le composant [`MenuItem`](../../src/components/Menu/MenuItem.tsx)
 
 **State Management**:
 ```typescript
@@ -64,12 +64,12 @@ interface MenuState {
 <button
   aria-label="Ouvrir le menu" | "Fermer le menu"
   aria-expanded={isOpen}
-  aria-controls="left-menu"
+  aria-controls="menu"
 >
 
 // Menu principal
 <nav
-  id="left-menu"
+  id="menu"
   role="navigation"
   aria-label="Menu principal"
 >
@@ -110,8 +110,8 @@ styles.list        // Liste des items
 #### Example Usage
 
 ```typescript
-import LeftMenu from '@/components/LeftMenu/LeftMenu';
-import { MenuConfig } from '@/components/LeftMenu/types';
+import Menu from '@/components/Menu/Menu';
+import { MenuConfig } from '@/components/Menu/types';
 
 const config: MenuConfig = {
   items: [
@@ -127,7 +127,7 @@ export default function Layout({ children }) {
   return (
     <html>
       <body>
-        <LeftMenu config={config} />
+        <Menu config={config} />
         {children}
       </body>
     </html>
@@ -139,7 +139,7 @@ export default function Layout({ children }) {
 
 ### MenuItem Component
 
-**File**: [`src/components/LeftMenu/MenuItem.tsx`](../../src/components/LeftMenu/MenuItem.tsx)
+**File**: [`src/components/Menu/MenuItem.tsx`](../../src/components/Menu/MenuItem.tsx)
 
 #### Props Contract
 
@@ -225,7 +225,7 @@ styles.label       // Libellé
 #### Example Usage
 
 ```typescript
-import MenuItem from '@/components/LeftMenu/MenuItem';
+import MenuItem from '@/components/Menu/MenuItem';
 
 const item = {
   id: 'home',
@@ -248,7 +248,7 @@ const item = {
 
 ### MenuConfig Contract
 
-**Interface**: [`MenuConfig`](../../src/components/LeftMenu/types.ts:25)
+**Interface**: [`MenuConfig`](../../src/components/Menu/types.ts:25)
 
 ```typescript
 interface MenuConfig {
@@ -302,7 +302,7 @@ const config: MenuConfig = {
 
 ### MenuItem Contract
 
-**Interface**: [`MenuItem`](../../src/components/LeftMenu/types.ts:9)
+**Interface**: [`MenuItem`](../../src/components/Menu/types.ts:9)
 
 ```typescript
 interface MenuItem {
@@ -364,7 +364,7 @@ const item: MenuItem = {
 
 ### MenuState Contract
 
-**Interface**: [`MenuState`](../../src/components/LeftMenu/types.ts:39)
+**Interface**: [`MenuState`](../../src/components/Menu/types.ts:39)
 
 ```typescript
 interface MenuState {
@@ -536,7 +536,7 @@ item.href = 'invalid-route';
 
 **Required Test Cases**:
 ```typescript
-describe('LeftMenu', () => {
+describe('Menu', () => {
   it('renders all menu items', () => { ... });
   it('highlights active item based on pathname', () => { ... });
   it('opens/closes on hamburger click (mobile)', () => { ... });
@@ -557,7 +557,7 @@ describe('MenuItem', () => {
 
 **Required Test Cases**:
 ```typescript
-describe('LeftMenu Integration', () => {
+describe('Menu Integration', () => {
   it('updates active item on navigation', () => { ... });
   it('works across all breakpoints', () => { ... });
   it('maintains state during navigation', () => { ... });
@@ -568,7 +568,7 @@ describe('LeftMenu Integration', () => {
 
 **Required Test Cases**:
 ```typescript
-describe('LeftMenu Accessibility', () => {
+describe('Menu Accessibility', () => {
   it('has correct ARIA attributes', () => { ... });
   it('supports keyboard navigation', () => { ... });
   it('announces state changes to screen readers', () => { ... });
@@ -580,7 +580,7 @@ describe('LeftMenu Accessibility', () => {
 
 ## Migration Contract
 
-### From RightMenu to LeftMenu
+### From RightMenu to Menu
 
 **Breaking Changes**: None (API identical)
 
@@ -588,7 +588,7 @@ describe('LeftMenu Accessibility', () => {
 ```typescript
 // 1. Import
 - import RightMenu from '@/components/RightMenu/RightMenu';
-+ import LeftMenu from '@/components/LeftMenu/LeftMenu';
++ import Menu from '@/components/Menu/Menu';
 
 // 2. Config
 const config: MenuConfig = {
@@ -599,7 +599,7 @@ const config: MenuConfig = {
 
 // 3. Usage
 - <RightMenu config={config} />
-+ <LeftMenu config={config} />
++ <Menu config={config} />
 ```
 
 **Backward Compatibility**:
@@ -641,7 +641,7 @@ const config: MenuConfig = {
  * 
  * @example
  * ```tsx
- * <LeftMenu config={{
+ * <Menu config={{
  *   items: [{ id: 'home', label: 'Accueil', href: '/' }],
  *   width: 280,
  *   mobileBreakpoint: 768,
@@ -649,7 +649,7 @@ const config: MenuConfig = {
  * }} />
  * ```
  */
-export default function LeftMenu({ config }: LeftMenuProps) {
+export default function Menu({ config }: MenuProps) {
   // ...
 }
 ```

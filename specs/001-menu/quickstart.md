@@ -1,12 +1,12 @@
 # Quick Start Guide: Menu de Navigation à Gauche
 
-**Feature**: 001-left-menu  
+**Feature**: 001-menu  
 **Date**: 2025-11-17  
 **Phase**: 1 - Design & Contracts
 
 ## Introduction
 
-Ce guide vous permet de démarrer rapidement avec le composant [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx). Vous apprendrez à l'installer, le configurer et le personnaliser en quelques minutes.
+Ce guide vous permet de démarrer rapidement avec le composant [`Menu`](../../src/components/Menu/Menu.tsx). Vous apprendrez à l'installer, le configurer et le personnaliser en quelques minutes.
 
 ## Prerequisites
 
@@ -21,22 +21,22 @@ Ce guide vous permet de démarrer rapidement avec le composant [`LeftMenu`](../.
 
 ```bash
 # Créer le dossier du composant
-mkdir -p src/components/LeftMenu
+mkdir -p src/components/Menu
 
 # Créer les fichiers nécessaires
-touch src/components/LeftMenu/LeftMenu.tsx
-touch src/components/LeftMenu/MenuItem.tsx
-touch src/components/LeftMenu/types.ts
+touch src/components/Menu/Menu.tsx
+touch src/components/Menu/MenuItem.tsx
+touch src/components/Menu/types.ts
 ```
 
 ### Step 2: Copy Type Definitions
 
-Créer [`src/components/LeftMenu/types.ts`](../../src/components/LeftMenu/types.ts):
+Créer [`src/components/Menu/types.ts`](../../src/components/Menu/types.ts):
 
 ```typescript
 /**
  * Types et interfaces pour le menu de navigation latéral gauche
- * @module LeftMenu/types
+ * @module Menu/types
  */
 
 /**
@@ -80,9 +80,9 @@ export interface MenuState {
 }
 
 /**
- * Props du composant LeftMenu
+ * Props du composant Menu
  */
-export interface LeftMenuProps {
+export interface MenuProps {
   /** Configuration du menu */
   config: MenuConfig;
 }
@@ -102,7 +102,7 @@ export interface MenuItemProps {
 
 ### Step 3: Create MenuItem Component
 
-Créer [`src/components/LeftMenu/MenuItem.tsx`](../../src/components/LeftMenu/MenuItem.tsx):
+Créer [`src/components/Menu/MenuItem.tsx`](../../src/components/Menu/MenuItem.tsx):
 
 ```typescript
 'use client';
@@ -161,9 +161,9 @@ const styles = {
 };
 ```
 
-### Step 4: Create LeftMenu Component
+### Step 4: Create Menu Component
 
-Créer [`src/components/LeftMenu/LeftMenu.tsx`](../../src/components/LeftMenu/LeftMenu.tsx):
+Créer [`src/components/Menu/Menu.tsx`](../../src/components/Menu/Menu.tsx):
 
 ```typescript
 'use client';
@@ -171,9 +171,9 @@ Créer [`src/components/LeftMenu/LeftMenu.tsx`](../../src/components/LeftMenu/Le
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import MenuItem from './MenuItem';
-import { LeftMenuProps, MenuState } from './types';
+import { MenuProps, MenuState } from './types';
 
-export default function LeftMenu({ config }: LeftMenuProps) {
+export default function Menu({ config }: MenuProps) {
   const pathname = usePathname();
   const menuRef = useRef<HTMLElement>(null);
   
@@ -235,7 +235,7 @@ export default function LeftMenu({ config }: LeftMenuProps) {
         onClick={handleToggle}
         aria-label={menuState.isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={menuState.isOpen}
-        aria-controls="left-menu"
+        aria-controls="menu"
         style={styles.hamburger}
         className="menu-hamburger"
       >
@@ -254,7 +254,7 @@ export default function LeftMenu({ config }: LeftMenuProps) {
       {/* Menu principal */}
       <nav
         ref={menuRef}
-        id="left-menu"
+        id="menu"
         role="navigation"
         aria-label="Menu principal"
         style={{
@@ -407,8 +407,8 @@ Dans [`src/app/layout.tsx`](../../src/app/layout.tsx):
 ```typescript
 import type { Metadata } from 'next';
 import './globals.css';
-import LeftMenu from '@/components/LeftMenu/LeftMenu';
-import { MenuConfig } from '@/components/LeftMenu/types';
+import Menu from '@/components/Menu/Menu';
+import { MenuConfig } from '@/components/Menu/types';
 
 export const metadata: Metadata = {
   title: 'CoopCraft',
@@ -467,7 +467,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <LeftMenu config={menuConfig} />
+        <Menu config={menuConfig} />
         {children}
       </body>
     </html>
@@ -523,7 +523,7 @@ const menuConfig: MenuConfig = {
 
 ### Customize Colors
 
-Modifier les styles dans [`LeftMenu.tsx`](../../src/components/LeftMenu/LeftMenu.tsx):
+Modifier les styles dans [`Menu.tsx`](../../src/components/Menu/Menu.tsx):
 
 ```typescript
 const styles = {
@@ -535,7 +535,7 @@ const styles = {
 };
 ```
 
-Ou dans [`MenuItem.tsx`](../../src/components/LeftMenu/MenuItem.tsx):
+Ou dans [`MenuItem.tsx`](../../src/components/Menu/MenuItem.tsx):
 
 ```typescript
 const styles = {
@@ -591,7 +591,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
-        {showMenu && <LeftMenu config={menuConfig} />}
+        {showMenu && <Menu config={menuConfig} />}
         {children}
       </body>
     </html>
@@ -604,7 +604,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 Créer [`src/config/menu.ts`](../../src/config/menu.ts):
 
 ```typescript
-import { MenuConfig } from '@/components/LeftMenu/types';
+import { MenuConfig } from '@/components/Menu/types';
 
 export const menuConfig: MenuConfig = {
   items: [
@@ -625,7 +625,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
-        <LeftMenu config={menuConfig} />
+        <Menu config={menuConfig} />
         {children}
       </body>
     </html>
@@ -640,7 +640,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 **Problème**: Le menu ne s'affiche pas.
 
 **Solutions**:
-1. Vérifier que `LeftMenu` est bien importé dans `layout.tsx`
+1. Vérifier que `Menu` est bien importé dans `layout.tsx`
 2. Vérifier les styles CSS dans `globals.css`
 3. Vérifier la console pour erreurs TypeScript
 4. Vérifier le z-index (doit être 1000)
@@ -696,7 +696,7 @@ Pour des menus très complexes:
 ```typescript
 import dynamic from 'next/dynamic';
 
-const LeftMenu = dynamic(() => import('@/components/LeftMenu/LeftMenu'), {
+const Menu = dynamic(() => import('@/components/Menu/Menu'), {
   ssr: false,  // Désactiver SSR si nécessaire
 });
 ```

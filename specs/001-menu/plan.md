@@ -1,13 +1,13 @@
 # Implementation Plan: Menu de Navigation à Gauche
 
-**Branch**: `001-left-menu` | **Date**: 2025-11-17 | **Spec**: [spec.md](./spec.md)
-**Input**: Feature specification from `/specs/001-left-menu/spec.md`
+**Branch**: `001-menu` | **Date**: 2025-11-17 | **Spec**: [spec.md](./spec.md)
+**Input**: Feature specification from `/specs/001-menu/spec.md`
 
 ## Summary
 
 Déplacer le menu de navigation de la droite vers la gauche de l'écran pour améliorer l'ergonomie de l'application. Cette modification implique principalement des changements CSS et de positionnement, tout en préservant la fonctionnalité existante (navigation, responsive, états actifs).
 
-**Approche technique**: Refactorisation du composant existant [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx) en [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx) avec ajustements de positionnement CSS et adaptation des media queries pour le comportement responsive.
+**Approche technique**: Refactorisation du composant existant [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx) en [`Menu`](../../src/components/Menu/Menu.tsx) avec ajustements de positionnement CSS et adaptation des media queries pour le comportement responsive.
 
 ## Technical Context
 
@@ -91,7 +91,7 @@ Déplacer le menu de navigation de la droite vers la gauche de l'écran pour am�
 ### Documentation (this feature)
 
 ```text
-specs/001-left-menu/
+specs/001-menu/
 ├── plan.md              # This file
 ├── research.md          # Phase 0: Analyse technique et décisions
 ├── data-model.md        # Phase 1: Structure des données
@@ -105,7 +105,7 @@ specs/001-left-menu/
 ```text
 src/
 ├── app/
-│   ├── layout.tsx           # [MODIFY] Importer LeftMenu au lieu de RightMenu
+│   ├── layout.tsx           # [MODIFY] Importer Menu au lieu de RightMenu
 │   ├── globals.css          # [MODIFY] Adapter les styles pour menu gauche
 │   └── [pages]/             # [NO CHANGE] Pages existantes
 │
@@ -115,8 +115,8 @@ src/
 │   │   ├── MenuItem.tsx
 │   │   └── types.ts
 │   │
-│   └── LeftMenu/            # [CREATE] Nouveau composant
-│       ├── LeftMenu.tsx     # Composant principal avec positionnement gauche
+│   └── Menu/            # [CREATE] Nouveau composant
+│       ├── Menu.tsx     # Composant principal avec positionnement gauche
 │       ├── MenuItem.tsx     # Réutilisé ou adapté depuis RightMenu
 │       └── types.ts         # Types adaptés (position: 'left')
 │
@@ -161,21 +161,21 @@ Cette feature respecte tous les principes de la Constitution :
 
 **Livrables**:
 1. [`data-model.md`](./data-model.md) - Structure des données
-   - Interface [`MenuConfig`](../../src/components/LeftMenu/types.ts) avec `position: 'left'`
-   - Interface [`MenuItem`](../../src/components/LeftMenu/types.ts) (inchangée)
-   - Interface [`MenuState`](../../src/components/LeftMenu/types.ts) (inchangée)
+   - Interface [`MenuConfig`](../../src/components/Menu/types.ts) avec `position: 'left'`
+   - Interface [`MenuItem`](../../src/components/Menu/types.ts) (inchangée)
+   - Interface [`MenuState`](../../src/components/Menu/types.ts) (inchangée)
    - Diagrammes de structure
 
 2. [`quickstart.md`](./quickstart.md) - Guide de démarrage rapide
    - Installation et configuration
-   - Exemple d'utilisation du composant [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx)
+   - Exemple d'utilisation du composant [`Menu`](../../src/components/Menu/Menu.tsx)
    - Configuration du menu dans [`layout.tsx`](../../src/app/layout.tsx)
    - Personnalisation des styles
 
 3. [`contracts.md`](./contracts.md) - Contrats d'interface
-   - Props du composant [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx)
-   - Props du composant [`MenuItem`](../../src/components/LeftMenu/MenuItem.tsx)
-   - Configuration [`MenuConfig`](../../src/components/LeftMenu/types.ts)
+   - Props du composant [`Menu`](../../src/components/Menu/Menu.tsx)
+   - Props du composant [`MenuItem`](../../src/components/Menu/MenuItem.tsx)
+   - Configuration [`MenuConfig`](../../src/components/Menu/types.ts)
    - Événements et callbacks
    - Accessibilité (ARIA attributes)
 
@@ -192,7 +192,7 @@ Cette feature respecte tous les principes de la Constitution :
 **Livrable**: [`tasks.md`](./tasks.md) (créé par `/speckit.tasks`)
 
 **Tâches anticipées** (à affiner en Phase 2):
-1. Créer la structure du composant [`LeftMenu`](../../src/components/LeftMenu/)
+1. Créer la structure du composant [`Menu`](../../src/components/Menu/)
 2. Adapter les styles CSS pour positionnement gauche
 3. Modifier les media queries responsive
 4. Mettre à jour [`layout.tsx`](../../src/app/layout.tsx)
@@ -205,7 +205,7 @@ Cette feature respecte tous les principes de la Constitution :
 
 ### 1. Stratégie de Migration: Duplication puis Remplacement
 
-**Décision**: Créer un nouveau composant [`LeftMenu`](../../src/components/LeftMenu/) plutôt que modifier [`RightMenu`](../../src/components/RightMenu/) en place.
+**Décision**: Créer un nouveau composant [`Menu`](../../src/components/Menu/) plutôt que modifier [`RightMenu`](../../src/components/RightMenu/) en place.
 
 **Justification**:
 - ✅ Permet un rollback facile si problème
@@ -332,7 +332,7 @@ Mapping avec les Success Criteria de la spec:
 
 ### Références
 
-- Spec originale: [`specs/001-left-menu/spec.md`](./spec.md)
+- Spec originale: [`specs/001-menu/spec.md`](./spec.md)
 - Composant actuel: [`src/components/RightMenu/RightMenu.tsx`](../../src/components/RightMenu/RightMenu.tsx)
 - Types actuels: [`src/components/RightMenu/types.ts`](../../src/components/RightMenu/types.ts)
 - Styles actuels: [`src/app/globals.css`](../../src/app/globals.css)

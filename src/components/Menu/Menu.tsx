@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import MenuItem from './MenuItem';
-import { LeftMenuProps, MenuState } from './types';
+import { MenuProps, MenuState } from './types';
 
-export default function LeftMenu({ config }: LeftMenuProps) {
+export default function Menu({ config }: MenuProps) {
   const pathname = usePathname();
   const menuRef = useRef<HTMLElement>(null);
   
@@ -67,7 +67,7 @@ export default function LeftMenu({ config }: LeftMenuProps) {
         onClick={handleToggle}
         aria-label={menuState.isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={menuState.isOpen}
-        aria-controls="left-menu"
+        aria-controls="menu"
         style={styles.hamburger}
         className="menu-hamburger"
       >
@@ -86,7 +86,7 @@ export default function LeftMenu({ config }: LeftMenuProps) {
       {/* Menu principal */}
       <nav
         ref={menuRef}
-        id="left-menu"
+        id="menu"
         role="navigation"
         aria-label="Menu principal"
         style={{
