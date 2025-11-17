@@ -17,7 +17,7 @@ git push -u origin $(git rev-parse --abbrev-ref HEAD)
 
 If push fails, display error and ask user to resolve conflicts or authentication issues.
 
-The target branch will always be **develop**.
+The target branch will always be **main**.
 
 ## Step 2: Analyze Commit Differences
 
@@ -30,7 +30,7 @@ git fetch origin
 
 2. Get commits that exist in source but not in target:
 ```bash
-git rev-list --left-right --pretty=format:"%H %s" origin/develop...HEAD
+git rev-list --left-right --pretty=format:"%H %s" origin/main...HEAD
 ```
 
 3. Parse the output to extract:
@@ -103,7 +103,7 @@ Structure the description with these sections:
 Before creating a new PR, check if one already exists:
 
 ```bash
-gh pr list --head $(git rev-parse --abbrev-ref HEAD) --base develop --state open --json number,title,url
+gh pr list --head $(git rev-parse --abbrev-ref HEAD) --base main --state open --json number,title,url
 ```
 
 Parse the JSON output to determine if a PR exists.
@@ -117,7 +117,7 @@ Create a new draft PR using GitHub CLI:
 gh pr create \
   --title "[generated_title]" \
   --body "[generated_body]" \
-  --base develop \
+  --base main \
   --head $(git rev-parse --abbrev-ref HEAD) \
   --draft
 ```
@@ -160,7 +160,7 @@ Mode: Draft
 - **MUST** create new PRs as drafts by default
 - **MUST** include commit links in the PR body with full hash
 - **MUST** handle large repositories with many commits gracefully
-- **MUST** always target the develop branch
+- **MUST** always target the main branch
 - Generate meaningful descriptions that explain both what and why
 - Preserve existing PR draft status when updating
 - Focus on clarity and context for reviewers
@@ -172,7 +172,7 @@ Mode: Draft
 - **Push failure**: Display error and suggest conflict resolution
 - **PR creation failure**: Check permissions and repository settings
 - **Network issues**: Retry or ask user to retry
-- **Invalid branch**: Ensure source branch exists and is not 'develop'
+- **Invalid branch**: Ensure source branch exists and is not 'main'
 - **Empty commit messages**: Skip or use commit hash as reference
 
 ## Additional Guidelines
