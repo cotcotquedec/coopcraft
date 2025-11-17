@@ -23,7 +23,7 @@ a {
   text-decoration: none;
 }
 
-/* ===== Right Menu Styles ===== */
+/* ===== Left Menu Styles ===== */
 
 /* Menu Item Hover/Focus */
 .menu-item-link:hover {
@@ -50,7 +50,7 @@ a {
 
   /* Menu caché par défaut sur mobile */
   .menu-nav {
-    transform: translateX(100%) !important;
+    transform: translateX(-100%) !important;
     max-width: 80% !important;
   }
 
@@ -61,7 +61,7 @@ a {
 
   /* Ajuster le contenu principal */
   body {
-    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
 }
 
@@ -84,6 +84,6 @@ a {
 
   /* Ajuster le contenu principal pour le menu */
   body {
-    padding-right: 280px;
+    padding-left: 280px;
   }
 }

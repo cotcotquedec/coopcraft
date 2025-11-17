@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import RightMenu from '@/components/RightMenu/RightMenu';
-import { MenuConfig } from '@/components/RightMenu/types';
+import LeftMenu from '@/components/LeftMenu/LeftMenu';
+import { MenuConfig } from '@/components/LeftMenu/types';
 
 export const metadata: Metadata = {
   title: 'CoopCraft - Speckit',
@@ -44,7 +44,7 @@ const menuConfig: MenuConfig = {
   ],
   width: 280,
   mobileBreakpoint: 768,
-  position: 'right',
+  position: 'left',
 };
 
 export default function RootLayout({
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <RightMenu config={menuConfig} />
+        <LeftMenu config={menuConfig} />
         {children}
       </body>
     </html>
