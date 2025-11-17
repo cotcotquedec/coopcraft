@@ -22,3 +22,68 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* ===== Right Menu Styles ===== */
+
+/* Menu Item Hover/Focus */
+.menu-item-link:hover {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.menu-item-link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Mobile Styles (≤ 768px) */
+@media (max-width: 768px) {
+  /* Afficher le bouton hamburger */
+  .menu-hamburger {
+    display: block !important;
+  }
+
+  /* Afficher l'overlay quand menu ouvert */
+  .menu-overlay {
+    display: block !important;
+  }
+
+  /* Menu caché par défaut sur mobile */
+  .menu-nav {
+    transform: translateX(100%) !important;
+    max-width: 80% !important;
+  }
+
+  /* Menu visible quand ouvert */
+  .menu-nav.menu-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Ajuster le contenu principal */
+  body {
+    padding-right: 0 !important;
+  }
+}
+
+/* Desktop Styles (> 768px) */
+@media (min-width: 769px) {
+  /* Cacher le bouton hamburger */
+  .menu-hamburger {
+    display: none !important;
+  }
+
+  /* Cacher l'overlay */
+  .menu-overlay {
+    display: none !important;
+  }
+
+  /* Menu toujours visible */
+  .menu-nav {
+    transform: translateX(0) !important;
+  }
+
+  /* Ajuster le contenu principal pour le menu */
+  body {
+    padding-right: 280px;
+  }
+}
