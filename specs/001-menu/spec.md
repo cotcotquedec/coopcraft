@@ -1,6 +1,6 @@
 # Feature Specification: Menu de Navigation à Gauche
 
-**Feature Branch**: `001-left-menu`  
+**Feature Branch**: `001-menu`  
 **Created**: 2025-11-17  
 **Status**: Draft  
 **Input**: User description: "je voudrais decaler le menu a gauche finalement, a droite, ce n'est pas pratique"

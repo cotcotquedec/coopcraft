@@ -1,12 +1,12 @@
 # Data Model: Menu de Navigation à Gauche
 
-**Feature**: 001-left-menu  
+**Feature**: 001-menu  
 **Date**: 2025-11-17  
 **Phase**: 1 - Design & Contracts
 
 ## Overview
 
-Ce document définit la structure des données pour le composant [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx). Le modèle de données est identique à celui du composant [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx) existant, avec l'ajout de la valeur `'left'` pour la propriété `position`.
+Ce document définit la structure des données pour le composant [`Menu`](../../src/components/Menu/Menu.tsx). Le modèle de données est identique à celui du composant [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx) existant, avec l'ajout de la valeur `'left'` pour la propriété `position`.
 
 ## Type Definitions
 
@@ -131,7 +131,7 @@ RootLayout (layout.tsx)
   │
   ├─ menuConfig: MenuConfig
   │
-  └─ LeftMenu
+  └─ Menu
        │
        ├─ menuState: MenuState (internal)
        │
@@ -146,7 +146,7 @@ RootLayout (layout.tsx)
 graph TD
     A[User navigates] --> B[Next.js Router]
     B --> C[usePathname hook]
-    C --> D[useEffect in LeftMenu]
+    C --> D[useEffect in Menu]
     D --> E[Update activeItemId]
     E --> F[Re-render MenuItem]
     F --> G[Visual indicator]
@@ -157,7 +157,7 @@ graph TD
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant M as LeftMenu
+    participant M as Menu
     participant I as MenuItem
     participant R as Next.js Router
     
@@ -259,7 +259,7 @@ const menuConfig: MenuConfig = {
   position: 'left'
 };
 
-// État interne (LeftMenu component)
+// État interne (Menu component)
 const [menuState, setMenuState] = useState<MenuState>({
   isOpen: false,
   activeItemId: null
@@ -335,8 +335,8 @@ erDiagram
    - `MenuState.activeItemId` référence un `MenuItem.id`
    - Relation optionnelle (peut être `null`)
 
-3. **LeftMenu → MenuConfig**: One-to-One
-   - Un composant `LeftMenu` reçoit un `MenuConfig` via props
+3. **Menu → MenuConfig**: One-to-One
+   - Un composant `Menu` reçoit un `MenuConfig` via props
    - Relation immutable (config ne change pas après mount)
 
 ## Data Constraints
@@ -378,7 +378,7 @@ erDiagram
 ### Complete Configuration
 
 ```typescript
-import { MenuConfig } from '@/components/LeftMenu/types';
+import { MenuConfig } from '@/components/Menu/types';
 
 const menuConfig: MenuConfig = {
   items: [
@@ -481,7 +481,7 @@ useEffect(() => {
 
 ## Migration Notes
 
-### From RightMenu to LeftMenu
+### From RightMenu to Menu
 
 **Changements de données**: Aucun
 
@@ -496,7 +496,7 @@ const menuConfig: MenuConfig = {
   position: 'right'  // ← Ancienne valeur
 };
 
-// Après (LeftMenu)
+// Après (Menu)
 const menuConfig: MenuConfig = {
   items: [...],
   width: 280,
@@ -509,7 +509,7 @@ const menuConfig: MenuConfig = {
 
 ## Conclusion
 
-Le modèle de données pour [`LeftMenu`](../../src/components/LeftMenu/LeftMenu.tsx) est simple, bien typé et identique à [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx). La seule différence est la valeur `'left'` pour `position`, qui influence le rendu CSS mais pas la structure des données.
+Le modèle de données pour [`Menu`](../../src/components/Menu/Menu.tsx) est simple, bien typé et identique à [`RightMenu`](../../src/components/RightMenu/RightMenu.tsx). La seule différence est la valeur `'left'` pour `position`, qui influence le rendu CSS mais pas la structure des données.
 
 **Points clés**:
 - ✅ Types TypeScript stricts

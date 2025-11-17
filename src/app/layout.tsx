@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import LeftMenu from '@/components/LeftMenu/LeftMenu';
-import { MenuConfig } from '@/components/LeftMenu/types';
+import Menu from '@/components/Menu/Menu';
+import { MenuConfig } from '@/components/Menu/types';
 
 export const metadata: Metadata = {
   title: 'CoopCraft - Speckit',
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <LeftMenu config={menuConfig} />
+        <Menu config={menuConfig} />
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 # Research & Analysis: Menu de Navigation à Gauche
 
-**Feature**: 001-left-menu  
+**Feature**: 001-menu  
 **Date**: 2025-11-17  
 **Phase**: 0 - Research & Analysis
 
@@ -138,7 +138,7 @@ src/components/RightMenu/
 1. **Import statement** (ligne 3):
    ```typescript
    import RightMenu from '@/components/RightMenu/RightMenu';
-   // ← À changer en LeftMenu
+   // ← À changer en Menu
    ```
 
 2. **Config position** (ligne 47):
@@ -149,7 +149,7 @@ src/components/RightMenu/
 3. **Component usage** (ligne 58):
    ```typescript
    <RightMenu config={menuConfig} />
-   // ← À changer en <LeftMenu config={menuConfig} />
+   // ← À changer en <Menu config={menuConfig} />
    ```
 
 ## Technical Decisions
@@ -161,10 +161,10 @@ src/components/RightMenu/
 | Option | Avantages | Inconvénients | Score |
 |--------|-----------|---------------|-------|
 | **A. Modifier RightMenu en place** | - Moins de code<br>- Pas de duplication | - Risque de régression<br>- Nommage trompeur<br>- Rollback difficile | 4/10 |
-| **B. Créer LeftMenu (duplication)** | - Rollback facile<br>- Nommage clair<br>- Tests A/B possibles | - Code dupliqué temporairement<br>- Cleanup nécessaire | 9/10 |
+| **B. Créer Menu (duplication)** | - Rollback facile<br>- Nommage clair<br>- Tests A/B possibles | - Code dupliqué temporairement<br>- Cleanup nécessaire | 9/10 |
 | **C. Composant générique Menu** | - Réutilisable<br>- DRY principle | - Over-engineering<br>- Complexité accrue | 6/10 |
 
-**Décision**: **Option B - Créer LeftMenu**
+**Décision**: **Option B - Créer Menu**
 
 **Justification**:
 - ✅ Minimise les risques de régression
@@ -258,15 +258,15 @@ Implémentation actuelle:
 
 ### Phase 1: Duplication
 
-1. **Créer la structure** `src/components/LeftMenu/`
+1. **Créer la structure** `src/components/Menu/`
    ```bash
-   mkdir -p src/components/LeftMenu
-   cp src/components/RightMenu/*.tsx src/components/LeftMenu/
-   cp src/components/RightMenu/types.ts src/components/LeftMenu/
+   mkdir -p src/components/Menu
+   cp src/components/RightMenu/*.tsx src/components/Menu/
+   cp src/components/RightMenu/types.ts src/components/Menu/
    ```
 
 2. **Renommer les composants**
-   - `RightMenu.tsx` → `LeftMenu.tsx`
+   - `RightMenu.tsx` → `Menu.tsx`
    - Mettre à jour les imports internes
    - Mettre à jour les noms de fonctions
 
@@ -279,7 +279,7 @@ Implémentation actuelle:
 ### Phase 2: CSS Adaptation
 
 1. **Modifier `globals.css`**
-   - Créer section `.left-menu-*` classes
+   - Créer section `.menu-*` classes
    - Adapter media queries
    - Inverser transforms mobile
    - Adapter padding body
@@ -292,9 +292,9 @@ Implémentation actuelle:
 ### Phase 3: Integration
 
 1. **Modifier `layout.tsx`**
-   - Importer `LeftMenu`
+   - Importer `Menu`
    - Mettre à jour config `position: 'left'`
-   - Remplacer `<RightMenu />` par `<LeftMenu />`
+   - Remplacer `<RightMenu />` par `<Menu />`
 
 2. **Tests visuels**
    - Toutes les pages de l'app
@@ -336,7 +336,7 @@ Implémentation actuelle:
 | **Z-index conflicts** | Faible | Faible | Audit des z-index existants, documentation |
 | **Performance mobile** | Moyen | Très faible | Profiling Chrome DevTools, tests sur devices réels |
 | **Accessibilité compromise** | Élevé | Faible | Tests avec lecteurs d'écran, validation WAVE/axe |
-| **CSS specificity issues** | Faible | Faible | Utiliser classes spécifiques `.left-menu-*` |
+| **CSS specificity issues** | Faible | Faible | Utiliser classes spécifiques `.menu-*` |
 
 ### Risques Fonctionnels
 
@@ -508,7 +508,7 @@ Implémentation actuelle:
 
 | Phase | Tâches | Estimation | Dépendances |
 |-------|--------|------------|-------------|
-| **Phase 1: Duplication** | Créer LeftMenu, adapter styles inline | 2h | - |
+| **Phase 1: Duplication** | Créer Menu, adapter styles inline | 2h | - |
 | **Phase 2: CSS** | Adapter globals.css, media queries | 1h | Phase 1 |
 | **Phase 3: Integration** | Modifier layout.tsx, tests visuels | 1h | Phase 2 |
 | **Phase 4: Validation** | Tests fonctionnels, accessibilité, performance | 2h | Phase 3 |

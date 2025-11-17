@@ -1,6 +1,6 @@
 /**
- * Types et interfaces pour le menu de navigation latéral gauche
- * @module LeftMenu/types
+ * Types et interfaces pour le menu de navigation
+ * @module Menu/types
  */
 
 /**
@@ -44,9 +44,9 @@ export interface MenuState {
 }
 
 /**
- * Props du composant LeftMenu
+ * Props du composant Menu
  */
-export interface LeftMenuProps {
+export interface MenuProps {
   /** Configuration du menu */
   config: MenuConfig;
 }
