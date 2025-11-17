@@ -1,0 +1,32 @@
+{
+  "name": "coopcraft",
+  "version": "1.0.0",
+  "description": "**CoopCraft** est une application web développée avec Next.js qui permet de générer facilement des outils de bricolage personnalisés imprimables en 3D. Grâce à une interface intuitive construite avec shadcn/ui et une visualisation 3D interactive powered by Three.js, les utilisateurs peuvent créer des gabarits de perçage, guides de coupe et autres accessoires d'atelier sur mesure en ajustant simplement quelques paramètres. L'application génère ensuite des fichiers STL et 3MF prêts à imprimer, rendant la fabrication d'outils personnalisés accessible à tous, sans compétence en modélisation 3D.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -p 4000",
+    "build": "next build",
+    "start": "next start -p 4000",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cotcotquedec/coopcraft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cotcotquedec/coopcraft/issues"
+  },
+  "homepage": "https://github.com/cotcotquedec/coopcraft#readme",
+  "dependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,3 @@
+# CoopCraft
+
+**CoopCraft** est une application web développée avec Next.js qui permet de générer facilement des outils de bricolage personnalisés imprimables en 3D. Grâce à une interface intuitive construite avec shadcn/ui et une visualisation 3D interactive powered by Three.js, les utilisateurs peuvent créer des gabarits de perçage, guides de coupe et autres accessoires d'atelier sur mesure en ajustant simplement quelques paramètres. L'application génère ensuite des fichiers STL et 3MF prêts à imprimer, rendant la fabrication d'outils personnalisés accessible à tous, sans compétence en modélisation 3D.
